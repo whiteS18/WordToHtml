@@ -21,8 +21,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 
 /**
- * @program: iTextTest
- * @description: word转html，格式化表格,去除目录域代码
+ * @description: word转html，去除目录域代码
  * @author: cw song
  * @create: 2019-08-14 10:51
  * @UpdateUser: cwsong

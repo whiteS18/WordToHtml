@@ -33,7 +33,7 @@ import java.util.List;
 * @Author: CW Song
 * @Date: 2019/8/26
 */
-public class HelloWorld {
+public class ClearAreaCode {
 
     public static void main(String arge[]) {
         try {
