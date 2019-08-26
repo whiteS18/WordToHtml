@@ -1,5 +1,12 @@
 package WordToHtml;
 
+/** 
+* @Description: 静态资源文件 
+* @Param:  
+* @return:  
+* @Author: CW Song 
+* @Date: 2019/8/26 
+*/ 
 public class Constant {
 
     //路径源文件
