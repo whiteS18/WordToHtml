@@ -4,6 +4,7 @@ import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.converter.PicturesManager;
 import org.apache.poi.hwpf.converter.WordToHtmlConverter;
 import org.apache.poi.hwpf.usermodel.PictureType;
+import org.apache.poi.openxml4j.util.ZipSecureFile;
 import org.apache.poi.xwpf.converter.core.BasicURIResolver;
 import org.apache.poi.xwpf.converter.core.FileImageExtractor;
 import org.apache.poi.xwpf.converter.xhtml.XHTMLConverter;
@@ -48,7 +49,6 @@ public class WordToHtml {
         if (!imgFile.exists()) {
             imgFile.mkdirs();
         }
-
         //doc为后缀的
         if(sourceFileName.endsWith(".doc")){
             HWPFDocument wordDocument = new HWPFDocument(new FileInputStream(sourceFileName));
@@ -92,10 +92,12 @@ public class WordToHtml {
             String substring1 = content.substring(i, i1+7);
             content = content.replace(substring1,"");
             System.out.println("str==================="+substring1);
-        }
-        //docx为后缀的
-        if(sourceFileName.endsWith(".docx")){
-            XWPFDocument document = new XWPFDocument(new FileInputStream(sourceFileName));
+        }//docx为后缀的
+        else if(sourceFileName.endsWith(".docx")){
+            FileInputStream fileInputStream = new FileInputStream(sourceFileName);
+            //当你确定该文件可信任时使用该方法,避免大文件被误认为是zip炸弹,实际上不推荐上传大文件,会导致资源消耗过快
+            ZipSecureFile.setMinInflateRatio(-1.0d);
+            XWPFDocument document = new XWPFDocument(fileInputStream);
             XHTMLOptions options = XHTMLOptions.create().indent(4);
             options.setExtractor(new FileImageExtractor(new File(imgPath)));
             options.URIResolver(new BasicURIResolver(imgPath));
@@ -104,6 +106,9 @@ public class WordToHtml {
             baos.close();
             content = baos.toString();
 //            System.out.println(content);
+        }
+        else {
+            System.out.println("请上传doc或者docx文件");
         }
 
         //jsoup转化并保存
