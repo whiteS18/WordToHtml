@@ -23,7 +23,7 @@
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
-      <version>1.8.1</version>
+      <version>1.14.2</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.xhtmlrenderer/flying-saucer-pdf -->
     <dependency>
